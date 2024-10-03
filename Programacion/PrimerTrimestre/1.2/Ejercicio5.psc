@@ -1,5 +1,5 @@
 Algoritmo Ejercicio5
-	Definir salario Como Entero
+	Definir salario Como Real
 	
 	Escribir "Introduzca su salario"
 	
@@ -13,6 +13,13 @@ Algoritmo Ejercicio5
 			salario = salario + salario * 0.1 
 			Escribir "Su salario se a incrementado un 10%. Su nuevo salario es: " salario
 		SiNo
+			Si (salario >= 15001 Y salario <= 20000) Entonces
+				salario = salario + salario * 0.05 
+				Escribir "Su salario se a incrementado un 5%. Su nuevo salario es: " salario
+			SiNo
+				salario = salario + salario * 0.03 
+				Escribir "Su salario se a incrementado un 3%. Su nuevo salario es: " salario
+			FinSi
 		FinSi
 	FinSi
 FinAlgoritmo
