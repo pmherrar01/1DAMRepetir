@@ -20,6 +20,6 @@ Algoritmo Ejercicio8
 		
 		Escribir "¿Quieres seguir tirando dados?, Indica (Si) o (No) " 
 		Leer respuesta
-	Hasta Que respuesta == "No"
+	Hasta Que respuesta == "No" O respuesta == "no" O respuesta == "n"
 	
 FinAlgoritmo
