@@ -9,7 +9,7 @@ Algoritmo Ejercicio6
 	contImpares = 0
 	contPares = 0
 	
-	Para i = 0  Hasta 99 Con Paso 1 Hacer
+	Para i = 0  Hasta 100 Con Paso 1 Hacer
 		Si (i % 2 == 0) Entonces
 			contPares = contPares + 1
 		SiNo
@@ -18,4 +18,5 @@ Algoritmo Ejercicio6
 	Fin Para
 	
 	Escribir "Hay un total de " contPares " numeros pares y un total de " contImpares " numeros impares"
+	
 FinAlgoritmo
