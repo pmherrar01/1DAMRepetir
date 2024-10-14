@@ -26,13 +26,16 @@ Algoritmo ejercicio10
 		seg = seg + 1
 		Esperar 1 Segundos
 		Si (min == 60 ) Entonces
-			hora = hora + 1
 			min = 0
-			Escribir hora ":" min ":" seg
-		SiNo
-			Si (seg == 60 ) Entonces
-				min = min + 1
-				seg = 0			
+			hora = hora + 1
+		Sino
+			Si (hora == 24 ) Entonces
+				hora = 0
+			SiNo
+				Si (seg == 60 ) Entonces
+					min = min + 1
+					seg = 0			
+				FinSi
 			FinSi
 		FinSi
 	Hasta Que No infinito
