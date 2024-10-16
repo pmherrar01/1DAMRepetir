@@ -14,7 +14,7 @@ Algoritmo ejercicio10
 	Definir infinito Como Logico
 	
 	infinito = Verdadero
-	seg = 0
+	seg = 50
 	
 	Escribir "Dime la hora"
 	Leer  hora
@@ -25,21 +25,49 @@ Algoritmo ejercicio10
 		Escribir hora ":" min ":" seg
 		seg = seg + 1
 		Esperar 1 Segundos
-		Si (min == 60 ) Entonces
-			min = 0
-			hora = hora + 1
-		Sino
-			Si (hora == 24 ) Entonces
-				hora = 0
-			SiNo
-				Si (seg == 60 ) Entonces
-					min = min + 1
-					seg = 0			
+		Si (seg == 60 ) Entonces
+			min = min + 1
+			seg = 0
+			Si (min == 60 ) Entonces
+				min = 0
+				hora = hora + 1
+				Si (hora == 24 ) Entonces
+					hora = 0			
 				FinSi
 			FinSi
 		FinSi
 	Hasta Que No infinito
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Si (min == 60 ) Entonces
+		//min = 0
+		//hora = hora + 1
+	//Sino
+		//Si (hora == 24 ) Entonces
+		//	hora = 0
+		//SiNo
+			//Si (seg == 60 ) Entonces
+				//min = min + 1
+				//seg = 0			
+			//FinSi
+		//FinSi
+//	FinSi
 	
 FinAlgoritmo
