@@ -6,13 +6,17 @@
 Algoritmo Ejercicio11Extra
 	
 	Definir num Como Entero
-	Definir num1 Como Entero
 	Definir encontrado Como Logico
 	
 	encontrado = Falso
 	
-	Escribir "Dime un numero "
-	Leer num
+	Repetir
+		Escribir "Dime un numero "
+		Leer num
+		Si (num < 0 ) Entonces
+			Escribir "Error el numero tiene que ser positivo"
+		FinSi
+	Hasta Que num > 0
 	num1 = num
 	
 	Escribir num
