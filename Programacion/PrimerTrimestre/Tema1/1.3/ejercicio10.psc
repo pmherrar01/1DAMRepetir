@@ -36,6 +36,7 @@ Algoritmo ejercicio10
 				FinSi
 			FinSi
 		FinSi
+		Borrar Pantalla
 	Hasta Que No infinito
 	
 	
