@@ -14,7 +14,7 @@ Algoritmo ejercicio10
 	Definir infinito Como Logico
 	
 	infinito = Verdadero
-	seg = 50
+	seg = 0
 	
 	Escribir "Dime la hora"
 	Leer  hora
