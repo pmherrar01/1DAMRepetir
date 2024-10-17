@@ -1,7 +1,14 @@
-//Diseña un algoritmo que dibuje una escalera de asteriscos. La altura de la 
+//Diseña un algoritmo que dibuje una escalera invertida de asteriscos. La altura de la 
 //escalera se lee por teclado
+//Ej: "Introduce un nnumero": 
+//5
+//*****
+//****
+//***
+//**
+//*
 
-Algoritmo Ejercicio12
+Algoritmo ejercicio13
 	Definir num, i, j Como Entero
 	cont = 0
 	Repetir
@@ -14,11 +21,10 @@ Algoritmo Ejercicio12
 	
 	Para i = 1 Hasta num Con Paso 1 Hacer
 		
-			Para j = 1 Hasta i Con Paso 1 Hacer
-				Escribir Sin Saltar "*"
-			Fin Para
+		Para j = num Hasta i Con Paso -1 Hacer
+			Escribir Sin Saltar "*"
+		Fin Para
 		
 		Escribir  " "
 	Fin Para
-	
 FinAlgoritmo
