@@ -1,11 +1,11 @@
 //1. Escribe un algoritmo que pida dos numeros reales por teclado y muestre por pantalla
 //el resultado de multiplicarlos. Implementa y utiliza la función:
 
-Funcion num<- pedirNum 
+Funcion num<- pedirNum (mensaje)
 	Definir num Como Entero
 	
 	Repetir
-		Escribir "Introduce un numero real"
+		Escribir mensaje
 		Leer num
 		Si (num < 0) Entonces
 			Escribir "El numereo " num " tiene que ser mayor que 0"
@@ -24,8 +24,8 @@ FinFuncion
 Algoritmo Ejercicio1
 	Definir a, b, producto Como Entero
 	
-	a = pedirNum()
-	b = pedirNum()
+	a = pedirNum("Introduce un numero mayor que 0")
+	b = pedirNum("Introduce un numero mayor que 0")
 	
 	producto = multiplicar(a,b)
 	
