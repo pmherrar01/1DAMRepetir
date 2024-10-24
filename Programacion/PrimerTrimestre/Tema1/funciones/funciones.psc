@@ -13,7 +13,7 @@ Funcion mensaje(mensaje1)
 	
 FinFuncion
 
-Funcion  mayor <- retornarMAyor(a, b)
+Funcion  mayor <- retornarMAyor(a, b) //funcion que retorna la variable mayor
 	mayor = Falso
 	Si a < b Entonces
 		mayor = Verdadero
