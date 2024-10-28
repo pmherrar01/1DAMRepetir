@@ -22,8 +22,7 @@ Algoritmo Ejercicio9
 	num1 = pedirNum("Introduce un numero entero")
 	num2 = pedirNum("Introduce un numero entero")
 	num3 = pedirNum("Introduce un numero entero")
-	
-	
+
 	i = calcularMayor(calcularMayor(num1, num2), num3)
 	
 	Escribir "el numerp mayor es: " i 
