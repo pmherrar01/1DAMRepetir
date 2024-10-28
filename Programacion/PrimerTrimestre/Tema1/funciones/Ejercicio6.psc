@@ -5,7 +5,7 @@ Funcion precio<- pedirPrecio(mensaje)
 	Repetir
 		Escribir mensaje
 		Leer precio
-		Si (precio < 0) Entonces
+		Si (precio <= 0) Entonces
 			Escribir "Error. No puedes terner menos de 0 años"
 		FinSi
 	Hasta Que precio >= 0
