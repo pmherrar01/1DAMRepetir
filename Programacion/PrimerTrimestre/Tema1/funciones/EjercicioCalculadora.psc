@@ -30,8 +30,6 @@ Funcion total<- suma(a,b)
 	Definir total Como Real
 	
 	total = a + b
-	
-	Escribir "La suma de " a " + " b " es: " total 
 FinFuncion
 
 Funcion total<- resta(a,b)
@@ -74,7 +72,7 @@ FinFuncion
 
 Funcion menu(mensaje)
 	Definir num Como entero
-	Definir resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDivision Como Real
+	Definir resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDivision, a, b Como Real
 	DEfinir esPar Como Logico
 
 	Escribir mensaje
@@ -90,7 +88,11 @@ Funcion menu(mensaje)
 		Segun num Hacer
 			
 			1:
-				resultadoSuma  = suma(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la suma"))
+				a = pedirNum("Introduce un numero")
+				b = pedirNum("Introduce otro numero para la suma")
+				resultadoSuma  = suma(a,b)
+				
+				Escribir "La suma de " a " + " b " es: " resultadoSuma 
 			2:
 				resultadoResta = resta(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la resta"))
 			3:
