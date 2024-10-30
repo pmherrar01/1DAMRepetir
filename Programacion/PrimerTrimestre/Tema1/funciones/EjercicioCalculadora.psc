@@ -18,9 +18,66 @@
 //3. Implementa las funciones necesarias para evitar la repetición de código
 //4. (AMPLIACIÓN PARA CASA): Modifica el programa para que el usuario
 //	seleccione si va a realizar los cálculos con enteros o con reales
-Funcion menu(mensaje)
-	Definir salir Como Caracter
+Funcion num<- pedirNum(mensaje)
+	Definir num Como Real
 	
+	Escribir mensaje
+	Leer num
+	
+FinFuncion
+
+Funcion total<- suma(a,b)
+	Definir total Como Real
+	
+	total = a + b
+	
+	Escribir "La suma de " a " + " b " es: " total 
+FinFuncion
+
+Funcion total<- resta(a,b)
+	Definir total Como Real
+	
+	total = a - b
+	
+	Escribir  "La resta de " a " - " b " es: " total
+FinFuncion
+
+Funcion total<- multiplicacion(a,b) 
+	Definir total Como Real
+	
+	total = a * b
+	
+	Escribir "El resultado de " a " X " b " es: " total
+FinFuncion
+
+Funcion total<- division(a,b)
+	Definir total Como Real
+	
+	total = a / b
+	
+	Escribir "El resultado de " a " / " b " es: " total
+FinFuncion
+
+Funcion esPar<- parOImpar(a)
+	Definir esPar Como Logico
+	
+	esPar = Falso
+	
+	Si(a % 2 == 0 ) Entonces
+		esPar = Verdadero 
+		Escribir a " es par"
+	SiNo
+		Escribir  a " es impar"
+	FinSi
+	
+FinFuncion
+
+Funcion menu(mensaje)
+	Definir num Como entero
+	Definir resultadoSuma, resultadoResta, resultadoMultiplicacion, resultadoDivision Como Real
+	DEfinir esPar Como Logico
+
+	Escribir mensaje
 	Repetir
 		Escribir		"1- Suma: "
 		Escribir		"2- Resta: "
@@ -28,10 +85,27 @@ Funcion menu(mensaje)
 		Escribir		"4- Division: "
 		Escribir		"5- Es par: "
 		Escribir		"6- Salir: "
-	Hasta Que salir == "salir"
+		Leer num
+		
+		Segun num Hacer
+			
+			1:
+				resultadoSuma  = suma(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la suma"))
+			2:
+				resultadoResta = resta(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la resta"))
+			3:
+				resultadoMultiplicacion = multiplicacion(pedirNum("Introduce un numero"), pedirNum("Introduce el otro numero a multiplicar"))
+			4:
+				resultadoDivision = division(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la division"))
+			5:
+				esPar = parOImpar(pedirNum("Introduce un numero y te digo si es par o impar"))
+			De Otro Modo:
+				Escribir "Saliendo..."
+		FinSegun
+	Hasta Que num == 6
 FinFuncion
 
 
 Algoritmo EjercicioCalculadora
-	
+	menu("Elige una opcion")
 FinAlgoritmo
