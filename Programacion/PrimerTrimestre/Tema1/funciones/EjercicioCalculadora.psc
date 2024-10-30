@@ -37,7 +37,6 @@ Funcion total<- resta(a,b)
 	
 	total = a - b
 	
-	Escribir  "La resta de " a " - " b " es: " total
 FinFuncion
 
 Funcion total<- multiplicacion(a,b) 
@@ -45,7 +44,6 @@ Funcion total<- multiplicacion(a,b)
 	
 	total = a * b
 	
-	Escribir "El resultado de " a " X " b " es: " total
 FinFuncion
 
 Funcion total<- division(a,b)
@@ -53,7 +51,6 @@ Funcion total<- division(a,b)
 	
 	total = a / b
 	
-	Escribir "El resultado de " a " / " b " es: " total
 FinFuncion
 
 Funcion esPar<- parOImpar(a)
@@ -63,9 +60,6 @@ Funcion esPar<- parOImpar(a)
 	
 	Si(a % 2 == 0 ) Entonces
 		esPar = Verdadero 
-		Escribir a " es par"
-	SiNo
-		Escribir  a " es impar"
 	FinSi
 	
 FinFuncion
@@ -94,13 +88,33 @@ Funcion menu(mensaje)
 				
 				Escribir "La suma de " a " + " b " es: " resultadoSuma 
 			2:
-				resultadoResta = resta(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la resta"))
+				a = pedirNum("Introduce un numero")
+				b = pedirNum("Introduce otro numero para la resta")
+				resultadoResta  = resta(a,b)
+				
+				Escribir "La resta de " a " - " b " es: " resultadoResta 
 			3:
-				resultadoMultiplicacion = multiplicacion(pedirNum("Introduce un numero"), pedirNum("Introduce el otro numero a multiplicar"))
+				
+				a = pedirNum("Introduce un numero")
+				b = pedirNum("Introduce otro numero para la multiplicacion")
+				resultadoMultiplicacion = multiplicacion(a,b)
+				
+				Escribir "el resultado de " a " X " b " es: " resultadoMultiplicacion
 			4:
-				resultadoDivision = division(pedirNum("Introduce un numero"), pedirNum("Introduce otro numero para la division"))
+				
+				a = pedirNum("Introduce un numero")
+				b = pedirNum("Introduce otro numero para la division")
+				resultadoDivision  = division(a,b)
+				
+				Escribir "El resultado de " a " /" b " es: " resultadoDivision 
 			5:
-				esPar = parOImpar(pedirNum("Introduce un numero y te digo si es par o impar"))
+				a = pedirNum("Introduce un numero y te digo si es par o impar")
+				esPar = parOImpar(a)
+				Si(esPar) Entonces
+					Escribir  a " es par"
+				SiNo
+					Escribir  a " es impar"
+				FinSi
 			De Otro Modo:
 				Escribir "Saliendo..."
 		FinSegun
