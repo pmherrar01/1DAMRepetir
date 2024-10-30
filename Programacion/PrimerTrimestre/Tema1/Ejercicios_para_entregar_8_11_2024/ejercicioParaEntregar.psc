@@ -13,11 +13,7 @@
 	//El usuario deberá elegir una de las 4 opciones presentadas. Cada opción llamará a una función que realizará el proceso (el código de cada una de ellas ya lo tenéis desarrollado en otras actividades). 
 		
 		//El proceso debe repetirse en el algoritmo principal hasta que el usuario introduzca el valor 4 que corresponde a Salir o Finalizar la aplicación.
-
-
-Funcion piramide(mensaje)
-	Definir num, i, j, a  Como Entero
-	
+Funcion num<- pedirNum(mensaje)
 	Repetir
 		Escribir mensaje
 		Leer num
@@ -25,7 +21,14 @@ Funcion piramide(mensaje)
 			Escribir "Error el numero tiene que ser positivo"
 		FinSi
 	Hasta Que num > 0
+FinFuncion
+
+
+
+Funcion piramide(mensaje)
+	Definir num, i, j, a  Como Entero
 	
+	num = pedirNum("Introduce un numero")
 	
 	
 	Para i = 1 Hasta num Con Paso 1 Hacer
