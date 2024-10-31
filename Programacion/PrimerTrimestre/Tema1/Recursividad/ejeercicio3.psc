@@ -15,7 +15,21 @@
 	//NOTA: Como la división entera ( Por ejemplo 5 división entera entre 2 es 2 ? 5 / 2 = 2 )
 		//no está implementada en PSEINT, podemos hacer uso de la función TRUNC(numero) de
 		//PSEINT que devuelve la parte entera de un número real.
+Funcion total<- sumaDigitos(num)
+	Si (num >= 0 Y num <= 9 ) Entonces
+		total = num
+	SiNo
+		total = sumaDigitos(num/10) + num%10
+	FinSi
+	
+FinFuncion
+
 
 Algoritmo ejeercicio3
+	Definir num Como Entero
 	
+	Escribir "Introduce un numero"
+	Leer num
+	
+	Escribir sumaDigitos(num)
 FinAlgoritmo
