@@ -5,8 +5,8 @@
 //	º Usa Mayusculas(cadena) y Minusculas(cadena) para transformar las partes.
 //		º Usa SubCadena(cadena, desde, hasta) para obtener las primeras letras.
 //		Ejemplo de salida: Para la entrada "jUan péREz", el resultado debería ser "Juan Pérez".
-Funcion nombreYApellido<- convertirNombre(nombre)
-	Definir nombreMayusculas, apellidoMayusculas, nombreBien,  apellidoBien Como Caracter
+Funcion nombreYApellido<- convertirNombre(nombre, apellido)
+	Definir nombreMayusculas, apellidoMayusculas, nombreBien,  apellidoBien, nombreYApellido  Como Caracter
 	Definir i Como Logico
 	
 	i = Verdadero
@@ -21,10 +21,6 @@ Funcion nombreYApellido<- convertirNombre(nombre)
 
 	
 	nombreYApellido = nombreBien + " " + apellidoBien
-	
-FinFuncion
-
-Funcion convertirApellido(apellido)
 	
 FinFuncion
 
