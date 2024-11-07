@@ -90,7 +90,7 @@ Funcion menu(mensaje)
 				factorial = calcularFactorial(num)
 				Escribir "El factorial de " num " es: " factorial
 			2:
-				num = pedirNum("Introduce un numoer para calcularte el fibonacci")
+				num = pedirNum("Introduce un numero para calcularte el fibonacci")
 				fibonacci = calcularFibonacci(num)
 				Éscribir "El bonacci de " num " es: " fibonacci
 			3:
