@@ -19,7 +19,28 @@ Funcion num<- pedirNum(mensaje)
 	Hasta Que num > 0
 FinFuncion
 
+Funcion f<- calcularFactorial(num)
 
+	Definir f Como Real
+	
+	f = 1
+	
+	Para i = num Hasta 1 Con Paso -1 Hacer
+		f = f * i
+	Fin Para
+	
+FinFuncion
+
+Funcion fibonacci<- calcularFibonacci(num)
+	Definir fibonacci Como Entero
+	
+	Si (num <= 1) Entonces
+		fibonacci = num
+	SiNo
+		fibonacci = calcularFibonacci(num - 1) + calcularFibonacci(num - 2)
+	FinSi
+	
+FinFuncion
 
 Funcion piramide(mensaje)
 	Definir num, i, j, a  Como Entero
@@ -52,7 +73,8 @@ Funcion piramide(mensaje)
 	
 FinFuncion
 Funcion menu(mensaje)
-	Definir num Como entero
+	Definir num, fibonacci Como entero
+	Definir factorial Como Real
 	Escribir mensaje
 	Repetir
 		Escribir		"1- Calcular Factoriral "
@@ -64,9 +86,13 @@ Funcion menu(mensaje)
 		Segun num Hacer
 			
 			1:
-				
+				num = pedirNum("Introcuce un numero")
+				factorial = calcularFactorial(num)
+				Escribir "El factorial de " num " es: " factorial
 			2:
-			
+				num = pedirNum("Introduce un numero para calcularte el fibonacci")
+				fibonacci = calcularFibonacci(num)
+				Éscribir "El bonacci de " num " es: " fibonacci
 			3:
 			piramide("Dime de cuanto de grande va a ser la piramide")
 			De Otro Modo:
