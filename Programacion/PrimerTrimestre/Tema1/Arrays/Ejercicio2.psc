@@ -4,8 +4,20 @@ funcion n<- numAleatorio
 	n = Aleatorio(1,50)
 FinFuncion
 
-Funcion v1<- rellernarVector
-	DEfinir v1, n, i, numAle Como Entero
+Funcion mostrarVector(v)
+	Definir i , n Como Entero
+	n = 15
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
+		Si (i == n-1) Entonces
+			Escribir  Sin Saltar v[i]
+		SiNo
+			Escribir Sin Saltar v[i] "-"
+		FinSi
+    Fin Para
+FinFuncion
+
+Algoritmo Ejercicio2
+	Definir v1, n, i , numAle Como Entero
 	n = 16 
 	Dimensionar  v1[n]
 	
@@ -14,20 +26,6 @@ Funcion v1<- rellernarVector
 		v1[i] = numAle
 	Fin Para
 	
-FinFuncion
-
-Funcion mostrarVector(v)
-	Definir i Como Entero
-	
-	Para i = 0 Hasta 14 Con Paso 1 Hacer
-		Escribir Sin Saltar v[i] "- "
-    Fin Para
-FinFuncion
-
-Algoritmo Ejercicio2
-	Definir v1, n Como Entero
-	Dimensionar  v1[15]
-	v1[15]= rellernarVector
 	mostrarVector(v1)
 	
 FinAlgoritmo
