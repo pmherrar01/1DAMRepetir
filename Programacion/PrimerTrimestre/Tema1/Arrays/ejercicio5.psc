@@ -4,7 +4,7 @@ Funcion mostrarVector(v)
 	Definir i, n Como Entero
 	n = 5
 	
-	Para i = 1 Hasta n Con Paso 1 Hacer
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
 		Escribir Sin Saltar "[" v[i] "]"
 	Fin Para
 	
@@ -17,7 +17,7 @@ Algoritmo ejercicio5
 	Dimensionar v1[n], v2[n], v3[10] 
 	
 	Escribir "introduce un numero para el primer array"
-	Para i = 1 Hasta n Con Paso 1 Hacer
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
 		Leer v1[i]
 		Si (i <> n) Entonces
 			Escribir "introduce otro numero"
@@ -26,7 +26,7 @@ Algoritmo ejercicio5
 	
 	
 	Escribir "introduce un numero para el segundo array"
-	Para i = 1 Hasta n Con Paso 1 Hacer
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
 		Leer v2[i]
 		Si (i <> n) Entonces
 			Escribir "introduce otro numero"
@@ -38,14 +38,14 @@ Algoritmo ejercicio5
 	Escribir "Vector 2"
 	mostrarVector(v2)
 	
-	Para i = 1 Hasta n Con Paso 1 Hacer
+	Para i = 0 Hasta n-1 Con Paso 1 Hacer
 		v3[i] = v1[i]
 		v3[i+n] = v2[i]
 	Fin Para
 	
 	Escribir " "
 	Escribir "Vector 3:"
-	Para i = 1 Hasta n*2 Con Paso 1 Hacer
+	Para i = 0 Hasta (n*2)-1 Con Paso 1 Hacer
 		Escribir Sin Saltar "[" v3[i] "]"
 	Fin Para
 FinAlgoritmo
