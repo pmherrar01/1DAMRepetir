@@ -42,7 +42,7 @@ Funcion modificarVector(v,n)
 	Definir i, num Como Entero
 	num = pedirNum("Introduce la cantidad que quieres restar a cada celda del vector")
 	Para i = 0 Hasta n-1 Con paso 1 Hacer
-		v[i] = v[i] - num
+		v[i] = v[i] + num
 	FinPara
 FinFuncion
 
