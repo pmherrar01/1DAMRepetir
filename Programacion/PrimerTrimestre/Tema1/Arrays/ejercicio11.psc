@@ -16,16 +16,22 @@ Funcion rellenarVector(v,n)
 	i = 0
 	pares = 0
 	impares = 0
-	Repetir
+	
+	Mientras i < n Hacer
 		
-		v[i] = azar(100)
-		Si(v[i] %2 == 0)
+		numAleatorio = azar(100)
+		Si(numAleatorio %2 == 0 Y pares < n/2)
+			v[i] = numAleatorio
 			pares = pares + 1
-		SiNo
-			impares = impares + 1
+			i = i + 1
 		FinSi
-		i = i + 1
-	Hasta Que pares == n/2 Y impares == n/2 o i == n
+		Si(numAleatorio%2 <> 0 Y impares < n/2 ) Entonces
+			v[i] = numAleatorio
+			impares = impares + 1
+			i = i + 1
+		FinSi
+	Fin Mientras
+	
 	
 FinFuncion
 
