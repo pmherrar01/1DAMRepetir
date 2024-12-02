@@ -12,22 +12,20 @@
 	//2          	3      	 8         	6          	 5         	 7         
 
 Funcion rellenarVector(v,n) 
-	Definir i, numAleatorio Como Entero
+	Definir i, numAleatorio, pares, impares Como Entero
 	i = 0
+	pares = 0
+	impares = 0
 	Repetir
-		numAleatorio = azar(100)
-		Si(i%2==0) Entonces
-			Si(numAleatorio%2 == 0) Entonces
-				v[i] = numAleatorio
-				i = i + 1
-			FinSi
-		Sino
-			Si(numAleatorio%2 <> 0) Entonces
-				v[i] = numAleatorio
-				i = i + 1
-			FinSi	
+		
+		v[i] = azar(100)
+		Si(v[i] %2 == 0)
+			pares = pares + 1
+		SiNo
+			impares = impares + 1
 		FinSi
-	Hasta Que i == n
+		i = i + 1
+	Hasta Que pares == n/2 Y impares == n/2 o i == n
 	
 FinFuncion
 
