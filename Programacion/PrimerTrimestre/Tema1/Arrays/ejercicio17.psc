@@ -54,6 +54,26 @@ Funcion ordenarVector(v,n)
 	FinPara
 FinFuncion
 
+Funcion juntarVectores(v1,v2,v3,n)
+	Definir i Como Entero
+	
+	Para i = 0 Hasta n-1 Hacer
+		v3[i] = v1[i]
+		v3[i+n] = v2[i]
+	FinPara
+	
+FinFuncion
+
+Funcion separarVector(v1,v2,v3,n)
+	Definir i Como Entero
+	
+	Para i = 0 Hasta n-1 Hacer
+		v1[i] = v3[i]
+		v2[i] = v3[i+n]
+	FinPara
+	
+FinFuncion
+
 Algoritmo ejercicio17
 	Definir v1,v2,v3,n Como Entero
 	n = 4
@@ -65,9 +85,13 @@ Algoritmo ejercicio17
 	mostrarVector(v1,n,"Vector 1: ")
 	Escribir ""
 	mostrarVector(v2,n,"Vector 2: ")
-	v3[n] = v1[n] + v2[n]
-	ordenarVector(v3,n*2)
-
+	juntarVectores(v1,v2,v3,n)
 	Escribir ""
 	mostrarVector(v3,n*2,"Vector 3:")
+	ordenarVector(v3,n*2)
+	separarVector(v1,v2,v3,n)
+	Escribir ""
+	mostrarVector(v1,n,"Vector 1 ordenado:")
+	Escribir ""
+	mostrarVector(v2,n,"Vector 2 ordenado:")
 FinAlgoritmo
