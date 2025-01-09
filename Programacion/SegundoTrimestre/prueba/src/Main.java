@@ -1,6 +1,10 @@
 
 public class Main {
 
+    public static void pruebaMac(String mensaje){
+        System.out.println(mensaje);
+    }
+
     public static void funcion1(int num){
 
         System.out.println(num);
@@ -55,5 +59,7 @@ public class Main {
         funcion1(num);
 
         suma(5,5);
+
+        pruebaMac("esta es una prueba desde el mac");
     }
 }
