@@ -16,5 +16,9 @@ public class Main {
         }else {
             System.out.println("Adios");
         }
+
+        while (bandera){
+            System.out.println("infinito");
+        }
     }
 }
