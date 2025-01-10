@@ -20,3 +20,17 @@ CREATE TABLE MODULO(
     	ON DELETE CASCADE
     	ON UPDATE CASCADE
 );
+CREATE TABLE MATRICULA(
+    codmod INT,
+    codalum INT,
+    cursoacad INT,
+    nota DECIMAL(5,2),
+    faltas INT,
+    PRIMARY KEY (codmod, codalum, cursoacad),
+    FOREIGN KEY(codmod) REFERENCES MODULO(codmod)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    FOREIGN KEY(codalum) REFERENCES ALUMNO(codalumno)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE
+);
