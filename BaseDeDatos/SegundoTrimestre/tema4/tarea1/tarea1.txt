@@ -1,0 +1,22 @@
+EJERCICIO 1
+- SHOW DATABASES
+-CREATE DATABASE TAREA1
+-CREATE TABLE PROFESOR(
+    codprof INT PRIMARY KEY,
+    nombre VARCHAR(33),
+    ape1 VARCHAR(33),
+    ape2 VARCHAR(33),
+    nif VARCHAR(33) UNIQUE,
+    fecha_accceso DATE
+);
+
+CREATE TABLE MODULO(
+    codmod INT PRIMARY KEY,
+    nombre VARCHAR(33),
+    curso INT,
+    horas INT,
+    codprof INT,
+    FOREIGN KEY (codprof) REFERENCES PROFESOR(codprof)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE
+);
