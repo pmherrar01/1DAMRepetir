@@ -34,3 +34,33 @@ CREATE TABLE MATRICULA(
     	ON DELETE CASCADE
     	ON UPDATE CASCADE
 );
+
+
+EJERCICIO2
+- CREATE DATABASE EJERCICIO2TALLER
+- CREATE TABLE COCHE(
+    matricula VARCHAR(8) PRIMARY KEY,
+    marca VARCHAR(15),
+    an_Fab INT(2)
+);
+
+CREATE TABLE MECANICO(
+    dni VARCHAR(9) PRIMARY KEY,
+    nombre VARCHAR(15),
+    puesto VARCHAR(15),
+    parcial VARCHAR(1)
+);
+
+CREATE TABLE TRABAJO(
+    matricula VARCHAR(8),
+    dni VARCHAR(9),
+    horas DECIMAL(3,1),
+    fecha_Rep DATE,
+    PRIMARY KEY(matricula, dni, fecha_Rep),
+    FOREIGN KEY(matricula) REFERENCES COCHE(matricula)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE,
+    FOREIGN KEY(dni) REFERENCES MECANICO(dni)
+    	ON DELETE CASCADE
+    	ON UPDATE CASCADE
+);
