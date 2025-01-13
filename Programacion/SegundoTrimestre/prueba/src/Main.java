@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Main {
 
@@ -61,5 +62,9 @@ public class Main {
         suma(5,5);
 
         pruebaMac("esta es una prueba desde el mac");
+
+        int num6;
+        Scanner entrada  = new Scanner(System.in);
+        a = entrada.nextInt();
     }
 }
