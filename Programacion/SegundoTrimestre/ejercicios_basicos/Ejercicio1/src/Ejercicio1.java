@@ -37,7 +37,7 @@ public class Ejercicio1 {
                 menorCero = true;
                 System.out.print("Error no se puede aplicar el descuento a ese precio ");
             }else {
-                System.out.println("El producto de precio:  " + num + " se queda con un valor de " + aplicarDescuento(num) + "€ aplicandole el descuento");
+                System.out.println("El  producto de precio:  " + num + " se queda con un valor de " + aplicarDescuento(num) + "€ aplicandole el descuento");
             }
         }while (menorCero);
     }
