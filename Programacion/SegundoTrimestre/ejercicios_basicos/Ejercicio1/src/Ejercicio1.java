@@ -29,16 +29,16 @@ public class Ejercicio1 {
 
     public static void main(String[] args) {
         float num;
-        boolean menorCero = false;
+        boolean menorCero;
 
-        do{
+        do {
             num = pedirNum("Introduce un numero (puede contener decimales) para aplicarle el descuento:");
-            if (num <= 0){
-                menorCero = true;
-                System.out.print("Error no se puede aplicar el descuento a ese precio ");
-            }else {
+            menorCero = num > 0;
+            if (!menorCero){
+                System.out.print("Error no se puede aplicar el descuento a ese precio \n");
+            } else {
                 System.out.println("El  producto de precio:  " + num + " se queda con un valor de " + aplicarDescuento(num) + "€ aplicandole el descuento");
             }
-        }while (menorCero);
+        } while (!menorCero);
     }
 }
