@@ -5,12 +5,14 @@ public class Ejercicio3 {
     public static final int num = 20;
 
     public static int[] rellenarVector(int[] vNumerosPares){
-        int i;
+        int i, numPar;
+
+        numPar = 2;
 
         for (i = 0; i < vNumerosPares.length; i++) {
-            if(i%2 == 0) {
-                vNumerosPares[i] =  2 * i;
-            }
+                vNumerosPares[i] = numPar ;
+                numPar += 2;
+
         }
 
         return vNumerosPares;
