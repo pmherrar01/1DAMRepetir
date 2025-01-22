@@ -6,6 +6,7 @@ public class Ejercicio1 {
 
     public static String pedirCadena(String mensaje){
         Scanner entrada = new Scanner(System.in);
+        System.out.println(mensaje);
         String cadena = entrada.nextLine();
 
         return cadena;
@@ -15,13 +16,12 @@ public class Ejercicio1 {
         int cont, i;
         String vocales;
 
-        cont = 0
+        cont = 0;
+        vocales = "aeiouAeiou";
 
-        vocales = "a, e, i, o, u";
-
-        for(i = 0; i < cadena.length(); i++){
-            if(cadena.charAt().equalsIgnoreCase(vocales)){
-                cont += 1;
+        for (char c : cadena.toCharArray()) {
+            if (vocales.indexOf(c) != -1) {
+                cont++;
             }
         }
 
@@ -30,7 +30,10 @@ public class Ejercicio1 {
 
     public static void main(String[] args) {
         String cadena;
+        int cont;
 
         cadena = pedirCadena("Introduce una cadena de texto y te cuento las vocales");
+        cont = contarVocales(cadena);
+        System.out.println("En la cadena de texto: (" + cadena + ") hay una cantidad de " + cont + " vocales");
     }
 }
