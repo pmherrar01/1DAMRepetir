@@ -44,7 +44,6 @@ public class practicaAhorcado {
             if (!comprobarLetra(letra, guiones, palabraParaAdivinar)) {
                 System.out.println("La letra " + letra + " no está en la palabra");
                 intentos--;
-                System.out.println("Te quedan " + intentos + " intentos");
 
                 if (intentos == 0) {
                     System.out.println("¡No has adivinado la palabra! La palabra era: " + palabraParaAdivinar);
