@@ -49,7 +49,6 @@ public class Rectangulo {
     }
 
     public double calcularArea(){
-
         return ancho * altura;
     }
 }
