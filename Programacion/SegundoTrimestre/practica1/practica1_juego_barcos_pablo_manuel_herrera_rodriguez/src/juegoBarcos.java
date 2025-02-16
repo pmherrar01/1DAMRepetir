@@ -11,6 +11,7 @@ public class juegoBarcos {
 
     public static void inicializarTableros() {
         int i, j;
+
         for (i = 0; i < TAMANIO; i++) {
             for (j = 0; j < TAMANIO; j++) {
                 tableroJugador[i][j] = '~';
@@ -23,6 +24,7 @@ public class juegoBarcos {
     public static void colocarBarcos(char[][] tablero) {
         int fila, columna;
         boolean horizontal, colocado;
+
         for (int longitud : barcos) {
             colocado = false;
             while (!colocado) {
@@ -41,7 +43,7 @@ public class juegoBarcos {
         int i, j;
         boolean puedeColocar;
 
-        puedeColocar = true; // Inicializar correctamente
+        puedeColocar = true;
 
         if (horizontal) {
             if (col + longitud > TAMANIO) {
@@ -52,12 +54,12 @@ public class juegoBarcos {
                 for (j = -1; j <= 1; j++) {
                     if (fila + j >= 0 && fila + j < TAMANIO && col + i >= 0 && col + i < TAMANIO) {
                         if (tablero[fila + j][col + i] != '~') {
-                            puedeColocar = false; // Si hay una casilla ocupada, el barco no se puede colocar
+                            puedeColocar = false;
                         }
                     }
                 }
             }
-        } else { // Si el barco es vertical
+        } else {
             if (fila + longitud > TAMANIO) {
                 puedeColocar = false;
             }
@@ -73,13 +75,14 @@ public class juegoBarcos {
             }
         }
 
-        return puedeColocar; // Retorna la variable en lugar de usar return false directamente
+        return puedeColocar;
     }
 
 
     public static void colocarBarco(char[][] tablero, int fila, int col, int tamano, boolean horizontal) {
         int i;
         char simbolo = (char) ('0' + tamano);
+
         for (i = 0; i < tamano; i++) {
             if (horizontal) tablero[fila][col + i] = simbolo;
             else tablero[fila + i][col] = simbolo;
@@ -87,11 +90,15 @@ public class juegoBarcos {
     }
 
     public static void jugar() {
-        boolean juegoTerminado = false;
+        boolean juegoTerminado, turnoCPU;
+
+        juegoTerminado = false;
+        turnoCPU = true;
+
         while (!juegoTerminado) {
             boolean turnoJugador = true;
             while (turnoJugador) {
-                mostrarTablero(tableroDisparos, "TABLERO DISPAROS"); // Solo muestra disparos del jugador
+                mostrarTablero(tableroDisparos, "TABLERO DISPAROS");
                 System.out.println("Ingresa coordenadas (fila y columna): ");
                 int fila = entrada.nextInt();
                 int col = entrada.nextInt();
@@ -102,13 +109,13 @@ public class juegoBarcos {
                 }
             }
 
-            boolean turnoCPU = true;
+
             while (turnoCPU) {
                 turnoCPU = turnoOrdenador();
-                if (todosHundidos(tableroJugador)) { // Verificar después de cada disparo de la CPU
+                if (todosHundidos(tableroJugador)) {
                     System.out.println("¡Perdiste!");
                     juegoTerminado = true;
-                    return; // Sale inmediatamente del método
+                    return;
                 }
             }
         }
@@ -117,8 +124,11 @@ public class juegoBarcos {
 
     public static void mostrarTablero(char[][] tablero, String mensaje) {
         int i,j;
+
         System.out.println(mensaje);
+
         System.out.println("  0 1 2 3 4 5 6 7");
+
         for (i = 0; i < TAMANIO; i++) {
             System.out.print(i + " ");
             for (j = 0; j < TAMANIO; j++) {
@@ -131,7 +141,7 @@ public class juegoBarcos {
     public static boolean realizarDisparo(char[][] tableroOponente, char[][] tableroDisparos, int fila, int col) {
         boolean repetirTurno;
 
-        repetirTurno = false; // Variable booleana para el retorno
+        repetirTurno = false;
 
         if (fila < 0 || fila >= TAMANIO || col < 0 || col >= TAMANIO) {
             System.out.println("Coordenadas fuera de rango. Inténtalo de nuevo.");
@@ -139,7 +149,7 @@ public class juegoBarcos {
         } else if (tableroDisparos[fila][col] != '~') {
             System.out.println("Ya disparaste en esta posición. Inténtalo de nuevo.");
             repetirTurno = true;
-        } else if (tableroOponente[fila][col] != '~') { // Acertó un barco
+        } else if (tableroOponente[fila][col] != '~') {
             tableroOponente[fila][col] = 'X';
             tableroDisparos[fila][col] = 'X';
 
@@ -149,11 +159,11 @@ public class juegoBarcos {
                 System.out.println("¡Tocado! Vuelve a disparar.");
             }
 
-            repetirTurno = true; // Permite repetir el turno si aún hay partes del barco
+            repetirTurno = true;
         } else {
             System.out.println("Agua. Turno de la CPU.");
             tableroDisparos[fila][col] = 'A';
-            repetirTurno = false; // Pasa el turno a la CPU
+            repetirTurno = false;
         }
 
         return repetirTurno;
@@ -164,7 +174,7 @@ public class juegoBarcos {
         int fila, col;
         boolean repetirTurno;
 
-        repetirTurno = false; // Variable booleana para el retorno
+        repetirTurno = false;
 
         do {
             fila = (int) (Math.random() * TAMANIO);
@@ -173,20 +183,20 @@ public class juegoBarcos {
 
         System.out.println("El ordenador dispara en " + fila + "," + col);
 
-        if (tableroJugador[fila][col] != '~') { // La CPU acierta
+        if (tableroJugador[fila][col] != '~') {
             System.out.println("¡La CPU acertó y vuelve a disparar!");
             tableroJugador[fila][col] = 'X';
 
-            if (todosHundidos(tableroJugador)) { // Si hundió todos los barcos, termina el juego
+            if (todosHundidos(tableroJugador)) {
                 System.out.println("¡Perdiste!");
                 repetirTurno = false;
             } else {
-                repetirTurno = true; // La CPU repite turno si quedan barcos
+                repetirTurno = true;
             }
         } else {
             System.out.println("La CPU falló. Turno del jugador.");
             tableroJugador[fila][col] = 'A';
-            repetirTurno = false; // La CPU falla y el turno pasa al jugador
+            repetirTurno = false;
         }
 
         return repetirTurno;
@@ -198,7 +208,7 @@ public class juegoBarcos {
         boolean estanHundidos;
         int i, j;
 
-        estanHundidos = true; // Variable booleana para el retorno
+        estanHundidos = true;
 
         for (i = 0; i < TAMANIO; i++) {
             for (j = 0; j < TAMANIO; j++) {
@@ -220,20 +230,18 @@ public class juegoBarcos {
         int nuevaFila, nuevaColumna, i;
         boolean estaHundido;
 
-        estaHundido = true; // Variable booleana para el retorno
+        estaHundido = true;
 
-        barcoTocado = 'X'; // Marca de impacto
+        barcoTocado = 'X';
 
-        // Revisar en las cuatro direcciones si quedan partes del barco
-        x = new int[]{0, 0, -1, 1}; // Desplazamiento en filas (arriba/abajo)
-        y = new int[]{-1, 1, 0, 0}; // Desplazamiento en columnas (izquierda/derecha)
+        x = new int[]{0, 0, -1, 1};
+        y = new int[]{-1, 1, 0, 0};
 
         for (i = 0; i < 4; i++) {
             nuevaFila = fila + x[i];
             nuevaColumna = col + y[i];
 
             if (nuevaFila >= 0 && nuevaFila < TAMANIO && nuevaColumna >= 0 && nuevaColumna < TAMANIO) {
-                // Si hay una parte del barco aún sin impactar, no está hundido
                 if (tablero[nuevaFila][nuevaColumna] >= '1' && tablero[nuevaFila][nuevaColumna] <= '4') {
                     estaHundido = false;
                     break;
@@ -250,8 +258,6 @@ public class juegoBarcos {
         inicializarTableros();
         colocarBarcos(tableroJugador);
         colocarBarcos(tableroCPU);
-        mostrarTablero(tableroJugador, "TABLERO JUGADOR");
-        mostrarTablero(tableroCPU, "TABLERO CPU");
         jugar();
     }
 }
