@@ -140,6 +140,7 @@ public class juegoBarcos {
 
     public static boolean realizarDisparo(char[][] tableroOponente, char[][] tableroDisparos, int fila, int col) {
         boolean repetirTurno;
+        int impactos;
 
         repetirTurno = false;
 
@@ -149,9 +150,16 @@ public class juegoBarcos {
         } else if (tableroDisparos[fila][col] != '~') {
             System.out.println("Ya disparaste en esta posición. Inténtalo de nuevo.");
             repetirTurno = true;
-        } else if (tableroOponente[fila][col] != '~') {
+        } else if(tableroOponente[fila][col] == 'B'){
+            System.out.println("Se ha detonado una bomba");
+            impactos = detonarBomba(tableroDisparos, tableroOponente, fila, col);
+            System.out.println(impactos + " impactos en barcos");
+            repetirTurno = true;
+        }else if (tableroOponente[fila][col] != '~') {
             tableroOponente[fila][col] = 'X';
             tableroDisparos[fila][col] = 'X';
+
+
 
             if (esBarcoHundido(tableroOponente, fila, col)) {
                 System.out.println("¡BARCO HUNDIDO!");
@@ -252,12 +260,51 @@ public class juegoBarcos {
         return estaHundido;
     }
 
+    public static void colocarBomba(char[][] tablero){
+        int fila, columna;
+        boolean colocada;
 
+        colocada = false;
+
+        fila = (int) (Math.random() * TAMANIO);
+        columna = (int) (Math.random() * TAMANIO);
+
+        do{
+            if(tablero[fila][columna] == '~'){
+                tablero[fila][columna] = 'B';
+                colocada = true;
+            }
+        }while(!colocada);
+
+    }
+
+    public static int detonarBomba(char[][] tableroDisparos, char[][] tableroOponente, int fila, int col){
+        int i,j, cont;
+
+
+        cont = 0;
+
+
+            for(i = fila; i <= fila; i ++){
+                for(j = 0; j < TAMANIO; j++){
+                    if(tableroOponente[i][j] != '~'){
+                        cont += 1;
+                    }
+                    tableroDisparos[i][j] = 'O';
+                }
+            }
+            return cont;
+    }
 
     public static void main(String[] args) {
         inicializarTableros();
         colocarBarcos(tableroJugador);
         colocarBarcos(tableroCPU);
+        colocarBomba(tableroCPU);
+        colocarBomba(tableroJugador);
+
+        mostrarTablero(tableroJugador, "TABLERO JUGADOR");
+        mostrarTablero(tableroCPU, "TABLERO CPU");
         jugar();
     }
 }
