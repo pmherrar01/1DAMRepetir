@@ -285,9 +285,9 @@ public class juegoBarcos {
         cont = 0;
 
 
-            for(i = fila; i <= fila; i ++){
+          //  for(i = fila; i <= fila; i ++){
                 for(j = 0; j < TAMANIO; j++){
-                    if(tableroOponente[i][j] != '~'){
+                    if(tableroOponente[fila][j] != '~'){
                         cont += 1;
                     }
                     tableroDisparos[i][j] = 'O';
