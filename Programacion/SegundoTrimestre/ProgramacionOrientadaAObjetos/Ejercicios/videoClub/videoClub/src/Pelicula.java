@@ -84,4 +84,8 @@ public class Pelicula {
         }
         return false;
     }
+
+    public void mostrarInfo() {
+        System.out.println("Título: " + nombrePelicula + " | Calificación: " + calificacion + " | Disponible: " + (disponible ? "Sí" : "No") + " | Categoría: " + categoria);
+    }
 }
