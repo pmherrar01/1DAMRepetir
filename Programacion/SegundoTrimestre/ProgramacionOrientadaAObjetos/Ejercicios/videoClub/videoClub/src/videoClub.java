@@ -86,6 +86,7 @@ public class videoClub {
             System.out.println("5- DEVOLVER PELICULA");
             System.out.println("6- SALIR");
             num = ENTRADA.nextInt();
+            ENTRADA.nextLine();
 
             switch (num) {
                 case 1:
@@ -98,12 +99,15 @@ public class videoClub {
                     break;
                 case 3:
                     System.out.println("MOSTRAR POR CATEGORIA");
+                    mostrarPeliculaPorCategoria();
                     break;
                 case 4:
                     System.out.println("ALQUILAR");
+                    alquilarPelicula();
                     break;
                 case 5:
                     System.out.println("DEVOLVER");
+                    devolverPelicula();
                     break;
                 default:
                     System.out.println("Saliendo...");
@@ -157,6 +161,75 @@ public class videoClub {
 
         for (int i = 0; i < contPeliculas; i++) {
             vPeliculas[i].mostrarInfo();  //
+        }
+    }
+
+    public static void mostrarPeliculaPorCategoria(){
+        String categoriaABuscar;
+        boolean encontrada;
+
+        encontrada = false;
+
+        categoriaABuscar = pedirString("Introduce la categoria que quieres buscar: ");
+
+        for(int i = 0; i < contPeliculas; i++){
+            if(vPeliculas[i] != null && vPeliculas[i].getCategoria().equalsIgnoreCase(categoriaABuscar)){
+                vPeliculas[i].mostrarInfo();
+                encontrada = true;
+            }
+        }
+
+        if(!encontrada){
+            System.out.println("No se han encontrado peliculas de esa categoria.");
+        }
+    }
+
+    public static void alquilarPelicula(){
+        String peliculaAAlquilar;
+        boolean encontrada;
+
+        encontrada = false;
+
+        peliculaAAlquilar = pedirString("Introduce el nombre de la pelicula que deseas alquilar");
+
+        for(int i = 0; i < contPeliculas; i++){
+            if (peliculaAAlquilar.equalsIgnoreCase(vPeliculas[i].getNombrePelicula())){
+                encontrada = true;
+                if(vPeliculas[i].alquilar()){
+                    vPeliculas[i].setDisponible(false);
+                    System.out.println("Enhorabuena, has alquilado la película");
+                }else {
+                    System.out.println("Lo sentimos la pelicula no está disponible en este momento");
+                }
+            }
+        }
+
+        if(!encontrada){
+            System.out.println("La pelicula no existe en nuestras instalaciones");
+        }
+    }
+
+    public static void devolverPelicula(){
+        String peliculaDEvolver;
+        boolean encontrada;
+
+        peliculaDEvolver = pedirString("Introduce la pelicula que deseas devolver: ");
+        encontrada = false;
+
+        for(int i = 0; i < contPeliculas; i++){
+            if(peliculaDEvolver.equalsIgnoreCase(vPeliculas[i].getNombrePelicula())){
+                encontrada = true;
+                if(vPeliculas[i].devolver()){
+                    vPeliculas[i].setDisponible(true);
+                    System.out.println("Devolucion confirmada");
+                }else{
+                    System.out.println("Error no se puede devolver esa pelicula");
+                }
+            }
+        }
+
+        if(!encontrada){
+            System.out.println("Error en la devolución. La película no existe en nuestras instalaciones");
         }
     }
 
