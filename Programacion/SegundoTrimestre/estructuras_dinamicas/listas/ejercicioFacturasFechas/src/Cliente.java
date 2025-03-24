@@ -1,19 +1,26 @@
-public class Cliente {
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-    private int id, numeroTelefono;
-    private String nombreCliente, correoCliente;
+// Clase Cliente
+class Cliente {
+    private String id;
+    private String nombre;
+    private String correo;
+    private String telefono;
 
-    public Cliente(int id, int numeroTelefono, String nombreCliente, String correoCliente) {
+    public Cliente(String id, String nombre, String correo, String telefono) {
         this.id = id;
-        this.numeroTelefono = numeroTelefono;
-        this.nombreCliente = nombreCliente;
-        this.correoCliente = correoCliente;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.telefono = telefono;
     }
 
-    public Cliente() {
-        this.id = 0;
-        this.numeroTelefono = 0;
-        this.nombreCliente = "";
-        this.correoCliente = "";
+    public String getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }

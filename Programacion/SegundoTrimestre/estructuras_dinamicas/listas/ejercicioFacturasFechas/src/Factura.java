@@ -1,27 +1,44 @@
 import java.time.LocalDate;
 
-public class Factura {
-    private int idFactura, iva;
-    private double importe;
+class Factura {
+    private String id;
+    private double importeTotal;
+    private double iva;
     private Cliente cliente;
-    private LocalDate fechaEmision, fechaVencimineto;
+    private LocalDate fechaEmision;
+    private LocalDate fechaVencimiento;
 
-    public Factura(int idFactura, int iva, double importe, Cliente cliente, LocalDate fechaEmision, LocalDate fechaVencimineto) {
-        this.idFactura = idFactura;
+    public Factura(String id, double importeTotal, double iva, Cliente cliente,
+                   LocalDate fechaEmision, LocalDate fechaVencimiento) {
+        this.id = id;
+        this.importeTotal = importeTotal;
         this.iva = iva;
-        this.importe = importe;
         this.cliente = cliente;
         this.fechaEmision = fechaEmision;
-        this.fechaVencimineto = fechaVencimineto;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
-    public Factura() {
-        this.idFactura = 0;
-        this.iva = 21;
-        this.importe = 0;
-        this.cliente = null;
-        this.fechaEmision = LocalDate.now();
-        this.fechaVencimineto = this.fechaEmision.plusDays(30);
+    public String getId() {
+        return id;
     }
 
+    public double getImporteTotal() {
+        return importeTotal;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public LocalDate getFechaEmision() {
+        return fechaEmision;
+    }
+
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
 }
