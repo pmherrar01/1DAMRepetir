@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class Ejercicio2{
+public class Ejercicio3 {
 
     final static Scanner ENTRADA = new Scanner(System.in);
 
@@ -20,6 +20,9 @@ public class Ejercicio2{
         int i;
 
         for (i = 0; i < 10; i++){
+            if(pedirNum("Introduce un numero") > lNumeros(i)){
+
+            }
             lNumeros.add(pedirNum("Introduce un numero"));
         }
     }
