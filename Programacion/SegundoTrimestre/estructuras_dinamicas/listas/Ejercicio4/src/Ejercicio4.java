@@ -29,7 +29,7 @@ public class Ejercicio4 {
     public static void eliminarPares(List<Integer> lNumeros){
         int i;
 
-        for(i = 0; i < 10; i++){
+        for(i = lNumeros.size() -1 ; i >= 0; i--){
             if (lNumeros.get(i) % 2 == 0){
                 lNumeros.remove(i);
             }
