@@ -5,37 +5,29 @@ import java.util.Scanner;
 public class Alumno {
 
     final static Scanner ENTRADA = new Scanner(System.in);
-    final static int NUMASIGNATURA = 4;
-
 
     private String nombre;
-    private double nota;
-    private List<Asignatura> lAsignatura = new ArrayList<>();
+    private List<Asignatura> lAsignaturas = new ArrayList<>();
 
-    public double getNota() {
-        return nota;
-    }
+    public Alumno(String nombre, List<Asignatura> lAsignaturas) {
 
-    public Alumno(String nombre, double nota, List<Asignatura> lAsignatura) {
         this.nombre = nombre;
-        this.nota = nota;
-        this.lAsignatura = lAsignatura;
+        this.lAsignaturas = new ArrayList<>();
     }
 
-    public Alumno getAlumno(){
-
-        return new Alumno( nombre,  nota, lAsignatura);
-
+    public String getNombre() {
+        return nombre;
     }
 
-
+    public void getAsignatura(String nombre, double nota){
+        lAsignaturas.add(new Asignatura(nombre, nota));
+    }
 
     @Override
     public String toString() {
         return "Alumno{" +
                 "nombre='" + nombre + '\'' +
-                ", nota=" + nota +
+                ", lAsignaturas=" + lAsignaturas +
                 '}';
     }
 }
-

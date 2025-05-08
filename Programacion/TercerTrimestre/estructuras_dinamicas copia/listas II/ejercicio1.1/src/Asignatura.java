@@ -3,7 +3,7 @@ public class Asignatura {
     private String nombre;
 
 
-    public Asignatura(double nota, String nombre) {
+    public Asignatura(String nombre, double nota) {
         this.nota = nota;
         this.nombre = nombre;
     }
