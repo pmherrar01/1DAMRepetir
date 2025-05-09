@@ -9,7 +9,7 @@ public class Alumno {
     private String nombre;
     private List<Asignatura> lAsignaturas = new ArrayList<>();
 
-    public Alumno(String nombre, List<Asignatura> lAsignaturas) {
+    public Alumno(String nombre) {
 
         this.nombre = nombre;
         this.lAsignaturas = new ArrayList<>();
@@ -21,6 +21,27 @@ public class Alumno {
 
     public void getAsignatura(String nombre, double nota){
         lAsignaturas.add(new Asignatura(nombre, nota));
+    }
+
+    public List<Asignatura> getAsignaturas() {
+        return lAsignaturas;
+    }
+
+
+    public  double calcularNotaMedia(){
+        double media = 0;
+
+        for(Asignatura asi: lAsignaturas){
+            media += asi.getNota();
+        }
+
+        return media/lAsignaturas.size();
+    }
+
+    public void mostrarNotas(){
+        for(Asignatura asi: lAsignaturas){
+            asi.toString();
+        }
     }
 
     @Override

@@ -8,5 +8,15 @@ public class Asignatura {
         this.nombre = nombre;
     }
 
+    public double getNota() {
+        return nota;
+    }
 
+    @Override
+    public String toString() {
+        return "Asignatura{" +
+                "nota=" + nota +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }
