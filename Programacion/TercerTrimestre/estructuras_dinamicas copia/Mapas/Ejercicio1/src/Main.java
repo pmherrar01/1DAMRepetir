@@ -33,7 +33,7 @@ public class Main {
 
                 nombre = pedirString("Nombre");
                 contraseña = pedirString("Contraseña:");
-                if (mUsuarios.containsValue(nombre) && mUsuarios.containsKey(contraseña) ){
+                if (mUsuarios.containsValue(contraseña) && mUsuarios.get(contraseña).equalsIgnoreCase(nombre) ){
                     System.out.println("Aceso aceptado");
                     acceso =true;
                 }else {
