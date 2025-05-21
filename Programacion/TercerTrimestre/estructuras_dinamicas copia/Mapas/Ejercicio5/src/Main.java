@@ -21,8 +21,11 @@ public class Main {
     final static Scanner ENTRADA = new Scanner(System.in);
 
     public static int pedirNum(String mensaje){
+        int num;
         System.out.println(mensaje);
-        return ENTRADA.nextInt();
+        num = ENTRADA.nextInt();
+        ENTRADA.nextLine();
+        return num;
     }
 
     public static String pedirString(String mensaje){
@@ -44,6 +47,19 @@ public class Main {
 
     public static boolean comprobarDuplicacion(Map<String, List<String>> mDicionario, String nombrePalabra){
         return mDicionario.containsKey(nombrePalabra);
+    }
+
+    public static void mostrarDefiniciones(Map<String, List<String>> mDicionario ){
+        String palabraABuscar;
+
+        palabraABuscar = pedirString("Introduce la palabra que quieres buscar su definicion o definiciones: ");
+
+        if (mDicionario.containsKey(palabraABuscar)){
+            System.out.println("Definiciones de: " + palabraABuscar + mDicionario.get(palabraABuscar));
+        }else {
+            System.out.println("Esa palabra no existe en el dicionario: ");
+        }
+
     }
 
     public static void menu(Map<String, List<String>> mDicionario ){
@@ -70,6 +86,7 @@ public class Main {
                     }
                     break;
                 case 2:
+                    mostrarDefiniciones(mDicionario);
                     break;
                 case 3:
                     break;

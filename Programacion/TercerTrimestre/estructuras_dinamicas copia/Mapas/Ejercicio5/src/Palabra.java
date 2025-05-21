@@ -30,7 +30,7 @@ public class Palabra {
                 lDefiniciones.add(definicion);
             }
 
-        }while (fin);
+        }while (!fin);
 
     }
 
@@ -40,5 +40,11 @@ public class Palabra {
 
     public List<String> getlDefiniciones() {
         return lDefiniciones;
+    }
+
+    public void mostrarDefiniciones(){
+        for (String def : this.lDefiniciones){
+            System.out.println(def);
+        }
     }
 }
