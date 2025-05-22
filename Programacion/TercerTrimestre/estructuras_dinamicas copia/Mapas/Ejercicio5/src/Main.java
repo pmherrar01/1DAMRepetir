@@ -62,6 +62,24 @@ public class Main {
 
     }
 
+    public static void mostrarPalabra(Map<String, List<String>> mDicionario ){
+        String definicionABuscar;
+        boolean encontrada = false;
+
+        definicionABuscar = pedirString("Definicion:" );
+
+        for(Map.Entry<String, List<String>> entry : mDicionario.entrySet()){
+            if(entry.getValue().contains(definicionABuscar)){
+                System.out.println("La palabra es: " + entry.getKey());
+                encontrada = true;
+            }
+        }
+
+        if(!encontrada){
+            System.out.println("Esa definicion no se encuentra en este dicionario");
+        }
+    }
+
     public static void menu(Map<String, List<String>> mDicionario ){
         int opcion;
         Palabra palabra;
@@ -89,6 +107,7 @@ public class Main {
                     mostrarDefiniciones(mDicionario);
                     break;
                 case 3:
+                    mostrarPalabra(mDicionario);
                     break;
                 case 4:
                     break;
