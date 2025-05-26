@@ -11,10 +11,7 @@
 // comprobará si son correctas. Al final, el programa deberá mostrar cuántas respuestas son válidas y cuántas erróneas.
 
 import javax.print.DocFlavor;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -80,6 +77,66 @@ public class Main {
         }
     }
 
+    public static boolean comprobarLongitud(Map<String, List<String>> mDicionario){
+        if(mDicionario.size() < 5){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public static Set agruparMapa(Map<String, List<String>> mDicionario){
+
+        return  mDicionario.keySet();
+
+    }
+
+    public static List convertirALista(Set<String> aGrupo){
+
+       return new ArrayList<>(aGrupo);
+
+    }
+
+    public static List listaAleatoria(List<String> lOrdenada){
+
+        Collections.shuffle(lOrdenada);
+        return lOrdenada.subList(0,5);
+    }
+
+    public static boolean comprobarDefinicion(Map<String, List<String>> mDicionario, String definicion, String palabra){
+        List<String> lDefiniciones = mDicionario.get(palabra);
+
+        return lDefiniciones.contains(definicion);
+
+    }
+
+    public static void juego(Map<String, List<String>> mDicionario ){
+        List<String> lPalabrasAleatorias;
+        int acertos = 0, fallos = 0;
+        String definicionAdivinar;
+
+        if(!comprobarLongitud(mDicionario)){
+            System.out.println("No se puede juegar todavia por que el dicionario esta muy vacio");
+        }else {
+            lPalabrasAleatorias = listaAleatoria(convertirALista(agruparMapa(mDicionario)));
+            for (String palabra : lPalabrasAleatorias){
+                definicionAdivinar =  pedirString("Introduce la definicion de: "  + palabra);
+                if(comprobarDefinicion(mDicionario, definicionAdivinar, palabra)){
+                    System.out.println("Acertaste!!");
+                    acertos ++;
+                } else {
+                    System.out.println("Fallaste");
+                    fallos++;
+                }
+            }
+
+            System.out.println("Has obtenido un total de " + acertos + " aciertos y un total de " + fallos + " fallos");
+        }
+
+
+
+    } 
+
     public static void menu(Map<String, List<String>> mDicionario ){
         int opcion;
         Palabra palabra;
@@ -110,6 +167,7 @@ public class Main {
                     mostrarPalabra(mDicionario);
                     break;
                 case 4:
+                    juego(mDicionario);
                     break;
                 case 5:
                     System.out.println("Saliendo...");
