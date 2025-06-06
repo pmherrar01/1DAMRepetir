@@ -22,12 +22,12 @@ public class FicherosApuntes {
            if (Files.isRegularFile(directorioTxt)){
                l = Files.readAllLines(directorioTxt);
                for(String linea: l){
-
+                   System.out.println(linea);
                }
            }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("No existe");
         }
 
     }

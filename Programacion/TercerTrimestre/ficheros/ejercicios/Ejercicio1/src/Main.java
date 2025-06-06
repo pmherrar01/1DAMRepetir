@@ -7,48 +7,75 @@
 //info.txt
 //fichero.txt
 
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
-import java.util.List;
 import java.util.Scanner;
-import java.io.File;
 
 public class Main {
 
     final static Scanner ENTRADA = new Scanner(System.in);
+    static Path RUTA = Paths.get("");
 
-    public static String pedirExtension() {
-        System.out.println("Introduce la extension que queres filtar");
+    public static String pedirString(String mensaje) {
+        System.out.println(mensaje);
         return ENTRADA.nextLine();
     }
 
-    public static void main(String[] args) {
-        String extension;
-        Path p;
+    public static boolean comprobarDirectorio(String x) {
+        Path ruta = Paths.get(x);
+        RUTA = ruta;
 
-        p = Paths.get("C:\\Users\\pmherrerar01\\Desktop\\1DAMRepetir\\Programacion\\TercerTrimestre\\ficheros\\ejercicios\\Ejercicio1\\Ficheros");
+        if (Files.exists(ruta) || Files.isDirectory(ruta)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public static void buscarExtension(Path ruta) {
+        boolean encontrado = false;
+        String respuesta = "", extension;
 
 
-        try {
-            extension = pedirExtension();
-            if (Files.isDirectory(p)) {
-                // List<Path> lista = Files.walk(p).toList(); es otra manera de hacer el ejercicio
-                for (Path po : Files.walk(p).toList()) { //(Path po : lista) la otra forma de hacerlo
-                    //walk sirve para poder recorrer todos los elementos de un directorio en este caso (p)
-                    if (Files.isRegularFile(po)) {
-                        if (po.getFileName().toString().endsWith(extension)) {
-                            System.out.println(po.getFileName());
+        do {
+            extension = pedirString("Introduce la extension que deseas buscar");
+            try {
+                for (Path pa : Files.walk(ruta).toList()) {
+                    if (Files.isRegularFile(pa)) {
+                        if (pa.getFileName().toString().endsWith(extension)) {
+                            System.out.println(pa.getFileName());
+                            encontrado = true;
                         }
                     }
                 }
 
-            }
-        } catch (IOException e) {
+                if (!encontrado) {
+                    System.out.println("Esa extencion no se encuentra en este directorio ):");
+                    System.out.println("Quieres buscar otra extension?");
+                    respuesta = ENTRADA.nextLine();
+                }
 
+
+            } catch (IOException e) {
+                System.out.println("Eror al leer el directorio.");
+            }
+        } while (respuesta.equalsIgnoreCase("si" ) || !encontrado);
+    }
+
+    public static void main(String[] args) {
+
+
+        if (comprobarDirectorio(pedirString("Introduce una ruta"))) {
+            System.out.println("Ruta correcta");
+            buscarExtension(RUTA);
+        } else {
+            System.out.println("Esa ruta no existe");
         }
+
 
     }
 }

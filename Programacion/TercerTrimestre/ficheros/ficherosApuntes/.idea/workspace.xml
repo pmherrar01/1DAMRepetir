@@ -19,12 +19,12 @@
     &quot;assignee&quot;: &quot;pmherrar01&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/pmherrar01/1DAMRepetir.git&quot;,
-    &quot;accountId&quot;: &quot;fc7388e6-5194-4bb8-9d77-06c533b13f41&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pmherrar01/1DAMRepetir.git",
+    "accountId": "3e700ff7-de82-49fa-bc88-015994571dce"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -40,7 +40,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pmherrerar01/Desktop/1DAMRepetir/Programacion/TercerTrimestre/ficheros/ficherosApuntes",
+    "last_opened_file_path": "/Users/pablo/Desktop/1DAMRepetir/Programacion/TercerTrimestre/ficheros/ficherosApuntes",
     "settings.editor.selected.configurable": "preferences.editor"
   }
 }]]></component>
