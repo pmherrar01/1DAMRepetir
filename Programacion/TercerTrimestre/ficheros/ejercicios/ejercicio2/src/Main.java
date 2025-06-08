@@ -1,5 +1,9 @@
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -8,56 +12,100 @@ public class Main {
 
     public static String pedirString(String mensaje) {
         System.out.println(mensaje);
-        return ENTRADA.nextLine().trim();
+        return ENTRADA.nextLine();
     }
 
-    public static Path pasarARuta(String ruta) {
-        return Paths.get(ruta);
+    public static Path pasarARuta(String x) {
+
+        Path ruta = Paths.get(x);
+
+        if (Files.exists(ruta) && Files.isDirectory(ruta)) {
+            return ruta;
+        }
+
+        return null;
     }
 
-    public static String leerFicheroComoTexto(Path directorio, String nombreFichero) {
-        Path rutaFichero = directorio.resolve(nombreFichero);
+    public static Path rutaFichero(Path ruta, String fichero) {
+
+        Path rutaFichero = null;
+
+        if (ruta == null) {
+            System.out.println("La ruta no existe");
+        } else {
+            rutaFichero = ruta.resolve(fichero);
+        }
+
+        return rutaFichero;
+
+    }
+
+    public static List<String> leeerFichero(Path rutaFichero) {
+
+        List<String> lFichero = new ArrayList<>();
+
 
         try {
-            if (Files.exists(rutaFichero)) {
-                // Leer todo el contenido como una única cadena
-                return Files.readString(rutaFichero);
-            } else {
-                System.out.println("El fichero no existe: " + rutaFichero);
+            lFichero = Files.readAllLines(rutaFichero);
+
+        } catch (IOException e) {
+            System.out.println("error al leer el fichero");
+        }
+
+        return lFichero;
+    }
+
+    public static List<String> unirListas(List<String> a, List<String> b) {
+        List<String> lUnida = new ArrayList<>();
+        String contenidoA, contenidoB, contenido;
+
+        contenidoA = String.join("", a);
+        contenidoB = String.join("", b);
+
+        contenido = contenidoA + contenidoB;
+
+        lUnida.add(contenido);
+
+
+        return lUnida;
+    }
+
+    public static void escribirFichero(List<String> lUnida, Path rutaFicheroNuevo) {
+
+
+        try {
+            if (!Files.exists(rutaFicheroNuevo)) {
+                Files.createFile(rutaFicheroNuevo);
+                System.out.println("Archivo creado");
+                Files.write(rutaFicheroNuevo,lUnida);
+            }else {
+                System.out.println("el archico ya existe");
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el fichero: " + e.getMessage());
+            System.out.println("Error al crear el archivo");
         }
-        return "";
+
+
     }
 
     public static void main(String[] args) {
-        // Leer primer fichero
-        Path dir1 = pasarARuta(pedirString("Introduce la ruta del primer fichero:"));
-        String nombre1 = pedirString("Introduce el nombre del primer fichero:");
-        String contenido1 = leerFicheroComoTexto(dir1, nombre1);
 
-        // Leer segundo fichero
-        Path dir2 = pasarARuta(pedirString("Introduce la ruta del segundo fichero:"));
-        String nombre2 = pedirString("Introduce el nombre del segundo fichero:");
-        String contenido2 = leerFicheroComoTexto(dir2, nombre2);
+        Path rutaPrimerFichero = pasarARuta(pedirString("Introduce la ruta del primer archivo"));
+        String nombrePrimerFichero = pedirString("Introduce el nombre del primer fichero");
 
-        // Ruta destino
-        Path destino = pasarARuta(pedirString("Introduce la ruta de destino:"));
+        Path rutaSegundoFichero = pasarARuta(pedirString("Introduce la ruta del segundo fichero"));
+        String nombreSegundoFichero = pedirString("Nombre del segundo fichero");
 
-        // Crear el nombre del nuevo fichero
-        String nombreFinal = nombre1.replace(".txt", "") + "_" + nombre2;
-        Path rutaFinal = destino.resolve(nombreFinal);
+        rutaPrimerFichero = rutaFichero(rutaPrimerFichero, nombrePrimerFichero);
+        rutaSegundoFichero = rutaFichero(rutaSegundoFichero, nombreSegundoFichero);
 
-        // Concatenar contenidos sin saltos adicionales
-        String contenidoFinal = contenido1 + contenido2;
+        Path rutaFicheroNuevo = pasarARuta(pedirString("Introduce la ruta destino del nuevo fichero"));
+        String nombreFicheroFinal = nombrePrimerFichero.replace(".txt", "") + "_" + nombreSegundoFichero;
+        rutaFicheroNuevo = rutaFichero(rutaFicheroNuevo,nombreFicheroFinal);
 
-        try {
-            // Escribir la cadena concatenada en el nuevo fichero
-            Files.writeString(rutaFinal, contenidoFinal);
-            System.out.println("Fichero creado exitosamente en: " + rutaFinal);
-        } catch (IOException e) {
-            System.out.println("Error al escribir el fichero: " + e.getMessage());
-        }
+        List<String> lContenidoNuevo = unirListas(leeerFichero(rutaPrimerFichero),leeerFichero(rutaSegundoFichero));
+        escribirFichero(lContenidoNuevo, rutaFicheroNuevo);
+
+
     }
 }
