@@ -68,12 +68,30 @@ public class Main {
         return cont;
     }
 
+    public static void mostrarFichero(List<String> lContenido){
+        for (String l : lContenido){
+            System.out.println(l);
+        }
+    }
+
     public static void main(String[] args) {
 
         Path ruta = pasarARuta(pedirString("Introduce la ruta del fichero"));
         String nombreFichero = pedirString("Introduce el nombre del fichero");
 
-        Path rutaFichero = ruta.resolve(ruta,nombreFichero);
+        ruta = ruta.resolve(nombreFichero);
+
+        List<String> lContenido = new ArrayList<>();
+
+        lContenido = leerFichero(ruta);
+
+        int contCaracteres = contarCaracteres(lContenido);
+        System.out.println("EL fichero tiene un total de " + contCaracteres + " caracteres");
+
+        int contPalabras = contarPalabras(lContenido);
+        System.out.println("EL fichero tiene un total de " + contPalabras + " palabras");
+
+        System.out.println("el contenido del fichero es:"); mostrarFichero(lContenido);
 
     }
 }
