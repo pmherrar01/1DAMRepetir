@@ -82,7 +82,7 @@ public class Main {
                     numMayor = num;
                 }
             }catch (NumberFormatException e){
-
+                System.out.println("Linea no numerica ignorada " + l);
             }
         }
         return numMayor;
