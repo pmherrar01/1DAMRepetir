@@ -52,7 +52,10 @@ public class Main {
          cont += c.length();
         }
 
-        cont += lContenido.size() -1;
+        if (lContenido.size() > 1){
+            cont += lContenido.size() -1;
+        }
+
 
         return cont;
     }
