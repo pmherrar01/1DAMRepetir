@@ -1,11 +1,10 @@
 import java.time.LocalDate;
 
-
 public class Temperatura {
     private LocalDate fecha;
-    private double temperaturaMaxima, temperaturaMinima;
+    private int temperaturaMaxima, temperaturaMinima;
 
-    public Temperatura(LocalDate fecha, double temperaturaMaxima, double temperaturaMinima) {
+    public Temperatura(LocalDate fecha, int temperaturaMaxima, int temperaturaMinima) {
         this.fecha = fecha;
         this.temperaturaMaxima = temperaturaMaxima;
         this.temperaturaMinima = temperaturaMinima;
@@ -15,11 +14,11 @@ public class Temperatura {
         return fecha;
     }
 
-    public double getTemperaturaMaxima() {
+    public int getTemperaturaMaxima() {
         return temperaturaMaxima;
     }
 
-    public double getTemperaturaMinima() {
+    public int getTemperaturaMinima() {
         return temperaturaMinima;
     }
 
@@ -27,5 +26,4 @@ public class Temperatura {
     public String toString() {
         return fecha + "\t" + temperaturaMaxima + "\t" + temperaturaMinima;
     }
-
 }
