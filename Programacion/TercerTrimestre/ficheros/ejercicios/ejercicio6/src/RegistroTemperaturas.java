@@ -12,28 +12,32 @@ public class RegistroTemperaturas {
     private List<String> lContenido = new ArrayList<>();
 
     public RegistroTemperaturas(Path ruta) {
-        String[] partes = null;
-        Temperatura tem;
-
         try {
             if (Files.exists(ruta)) {
-                this.lContenido = Files.readAllLines(ruta);
-                for (int i = 1; i < this.lContenido.size(); i++){
-                    partes = this.lContenido.get(i).split("\t");
+                lContenido = Files.readAllLines(ruta);
+                for (int i = 1; i < lContenido.size(); i++) { // Saltar la cabecera
+                    String linea = lContenido.get(i).trim();
+                    if (linea.isEmpty()) continue;
 
-                    LocalDate fecha = LocalDate.parse(partes[0]);
-                    double temperaturaMaxima = Double.parseDouble(partes[1]);
-                    double temperaturaMinima = Double.parseDouble(partes[2]);
+                    String[] partes = linea.split("\t");
+                    if (partes.length < 3) continue;
 
-                    tem  = new Temperatura(fecha,temperaturaMaxima,temperaturaMinima);
+                    try {
+                        LocalDate fecha = LocalDate.parse(partes[0]);
+                        double temperaturaMaxima = Double.parseDouble(partes[1]);
+                        double temperaturaMinima = Double.parseDouble(partes[2]);
 
-                    this.lTemperaturas.add(tem);
-
+                        Temperatura tem = new Temperatura(fecha, temperaturaMaxima, temperaturaMinima);
+                        this.lTemperaturas.add(tem);
+                    } catch (Exception e) {
+                        System.out.println("Error al parsear línea: " + linea);
+                    }
                 }
             }
         } catch (IOException e) {
             System.out.println("Error al leer el fichero");
         }
+
 
     }
 
@@ -63,8 +67,8 @@ public class RegistroTemperaturas {
     }
 
     public void mostrarRegistro(){
-        for (Temperatura tem : lTemperaturas){
-            System.out.println(tem);
+        for (String l : this.lContenido){
+            System.out.println(l);
         }
 
         System.out.println("Temperatura maxima de las maximas: " + calcularTemperaturaMaxima());
@@ -75,7 +79,8 @@ public class RegistroTemperaturas {
     public void escribirFichero(Path ruta){
         List<String> lcontenidoNuevo = new ArrayList<>();
         for (Temperatura tem: lTemperaturas){
-            String linea = tem.getFecha() + "\\t" + tem.getTemperaturaMaxima() +"\\t" + tem.getTemperaturaMinima() + "\n";
+            String linea = tem.getFecha() + "\t" + tem.getTemperaturaMaxima() +"\t" + tem.getTemperaturaMinima() ;
+            lcontenidoNuevo.add("Fecha\tTemperatura maxima\tTemperatura minima");
             lcontenidoNuevo.add(linea);
         }
 
@@ -87,8 +92,9 @@ public class RegistroTemperaturas {
         }
     }
 
-    public void añadirNuevaTemperatura(Temperatura tem, Path ruta){
-        
+    public void añadirTemperatura(Temperatura temp, Path ruta) {
+        lTemperaturas.add(temp);
+        escribirFichero(ruta);
     }
 
 }

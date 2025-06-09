@@ -24,6 +24,7 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -32,24 +33,29 @@ public class Main {
 
     public static int pedirNum(String mensaje){
         System.out.println(mensaje);
-        return ENTRADA.nextInt();
+        int num = ENTRADA.nextInt();
+        ENTRADA.nextLine(); // Consumir salto de línea pendiente
+        return num;
     }
+
 
     public static String pedirString(String mensaje){
         System.out.println(mensaje);
-        return ENTRADA.nextLine();
+        return ENTRADA.nextLine().toLowerCase().trim();
     }
 
     public static void menu(){
         int opcion;
         Path ruta;
-        Temperatura tem;
+        String directorio, fichero;
+
+        directorio = pedirString("Introduce la ruta del fichero");
+        fichero = pedirString("Nombre del Fichero: ");
+
+        ruta = Paths.get(directorio,fichero);
 
 
-        ruta = Paths.get(pedirString("Introduce la ruta del fichero"));
-        ruta = ruta.resolve(pedirString("Nombre del Fichero: "));
-
-
+        RegistroTemperaturas reg = new RegistroTemperaturas(ruta);
 
         do {
 
@@ -61,9 +67,18 @@ public class Main {
 
             switch (opcion){
                 case 1:
-                    tem = new Temperatura();
+                    System.out.println("Introduce la fecha (AÑO-MES-DIA)");
+                    LocalDate fecha = LocalDate.parse(ENTRADA.nextLine());
+                    System.out.println("Introduce la temperatura maxima de ese dia: ");
+                    double temperaturaMaxima = Double.parseDouble(ENTRADA.nextLine());
+                    System.out.println("Introduce la temperatura minima de ese dia: ");
+                    double temperaturaMinima = Double.parseDouble(ENTRADA.nextLine());
+
+                    Temperatura nuevaTemperatura = new Temperatura(fecha,temperaturaMaxima,temperaturaMinima);
+                    reg.añadirTemperatura(nuevaTemperatura, ruta);
                     break;
                 case 2:
+                    reg.mostrarRegistro();
                     break;
                 case 3:
                     System.out.println("Saliendo...");
