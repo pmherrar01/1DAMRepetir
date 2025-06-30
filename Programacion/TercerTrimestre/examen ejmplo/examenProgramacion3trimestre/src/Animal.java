@@ -9,9 +9,8 @@ public class Animal {
 
 
 
-    public Animal(String nombreAnimal, Sexo sexo, int estado) {
+    public Animal(int idAnimal, String nombreAnimal, Sexo sexo, int estado) {
         Scanner entrada = new Scanner(System.in);
-        idAnimal = 0;
         this.idAnimal = idAnimal;
         this.nombreAnimal = nombreAnimal;
         this.sexo = sexo;
@@ -22,6 +21,29 @@ public class Animal {
             this.crias = crias;
         }
 
-        idAnimal ++;
+    }
+
+    public int getIdAnimal() {
+        return idAnimal;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "idAnimal=" + idAnimal +
+                ", nombreAnimal='" + nombreAnimal + '\'' +
+                ", sexo=" + sexo +
+                ", estado=" + estado +
+                ", crias=" + crias +
+                '}';
     }
 }

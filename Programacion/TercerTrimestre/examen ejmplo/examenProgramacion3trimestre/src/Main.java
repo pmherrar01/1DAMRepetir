@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -34,15 +35,19 @@ public class Main {
             switch (num) {
                 case 1:
                     op.crearAnimal();
-                    System.out.println("animal creado con exito");
                     break;
                 case 2:
+                    op.cambiarEstadoAnimal();
                     break;
                 case 3:
+                    List<Animal> lEnfermos = op.listaAnimalesEnfermos();
+                    System.out.println("lEnfermos = " + lEnfermos);
                     break;
                 case 4:
+                    op.mostrarPorEspecie();
                     break;
                 case 5:
+                    op.mostrarPorEstado();
                     break;
                 case 6:
                     break;

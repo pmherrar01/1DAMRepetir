@@ -2,8 +2,16 @@ public class Reptiles extends Animal{
 
     private boolean acuatico;
 
-    public Reptiles( String nombreAnimal, Sexo sexo, int estado, boolean acuatico) {
-        super( nombreAnimal, sexo, estado);
+    public Reptiles(int idAnimal, String nombreAnimal, Sexo sexo, int estado, boolean acuatico) {
+        super(idAnimal, nombreAnimal, sexo, estado);
         this.acuatico = acuatico;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Reptiles{" +
+                "acuatico=" + acuatico +
+                '}';
     }
 }
