@@ -1,11 +1,22 @@
+import animales.*;
+
 import java.util.*;
 
 public class Operativas {
 
-    final static Scanner ENTRADA = new Scanner(System.in);
-    private Map<Animal, String> mAnimales = new HashMap<>();
+    final  Scanner ENTRADA = new Scanner(System.in);
+    Map<String, List<Animal>> mAnimalesEspecie = new HashMap<>();
+    Map<Integer, List<Animal>> mAnimalesEstado = new HashMap<>();
+    Map<Integer, Animal> mAnimalesId = new HashMap<>();
 
-    private static int pedirInt(String mensaje){
+
+    private String pedirString(String menaje){
+        System.out.println(menaje);
+        return ENTRADA.nextLine().toLowerCase().trim();
+
+    }
+
+    private int pedirInt(String mensaje){
         int num;
         System.out.println(mensaje);
         num = ENTRADA.nextInt();
@@ -13,211 +24,199 @@ public class Operativas {
         ENTRADA.nextLine();
 
         return num;
+
     }
 
-    public void crearAnimal() {
-        String nombreAnimal, sexo, carnivoro, acuatico, colorPlumas;
+    private double pedirDouble(String mensaje){
+        double num;
+        System.out.println(mensaje);
+        num = ENTRADA.nextDouble();
+
+        ENTRADA.nextLine();
+
+        return num;
+
+    }
+
+    private Animal pedirDatosAnimal(String especie){
+        Animal ani = null;
+
+        int idAnimal, estado;
+        String nombreAnimal, sexo, respuestaCarnivoro, colorPlumaje, respuestaAcuatico;
         Sexo sexoAnimal;
-        boolean esCarnivoro, esAcuatico;
         double peso, altura, longitudPico;
-        int estado;
+        boolean esCarnivoro, esAcuatico, guardarEspecie = true;
 
-        Animal animal;
-
-        System.out.println("que especie es el animal?");
-        String especie = ENTRADA.nextLine().toLowerCase();
-
-        switch (especie) {
-            case "mamifero":
-                System.out.println("Nombre animal: ");
-                nombreAnimal = ENTRADA.nextLine();
-
-                System.out.println("Sexo (M o H)");
-                sexo = ENTRADA.nextLine();
-                sexoAnimal = sexo.equalsIgnoreCase("H") ? Sexo.H : Sexo.M;
-
-                System.out.println("Estado: (bien '0', enfermo '1', en tratamiento '2')");
-                estado = ENTRADA.nextInt();
-                ENTRADA.nextLine();
-
-                System.out.println("peso:");
-                peso = ENTRADA.nextDouble();
-                ENTRADA.nextLine(); //
-
-                System.out.println("Altura");
-                altura = ENTRADA.nextDouble();
-                ENTRADA.nextLine();
-
-                System.out.println("Es carnivoro? (si o no)");
-                carnivoro = ENTRADA.nextLine().toLowerCase();
-                esCarnivoro = carnivoro.equals("si");
-
-                animal = new Mamifero(pedirInt("id: "), nombreAnimal, sexoAnimal, estado, peso, altura, esCarnivoro);
-                mAnimales.put(animal, especie);
-                System.out.println("Animal añadido con exito");
-                break;
-
-            case "reptil":
-                System.out.println("Nombre animal: ");
-                nombreAnimal = ENTRADA.nextLine();
-
-                System.out.println("Sexo (M o H)");
-                sexo = ENTRADA.nextLine();
-                sexoAnimal = sexo.equalsIgnoreCase("H") ? Sexo.H : Sexo.M;
-
-                System.out.println("Estado: (bien '0', enfermo '1', en tratamiento '2')");
-                estado = ENTRADA.nextInt();
-                ENTRADA.nextLine(); // <--- importante
-
-                System.out.println("es acuatico? (si o no)");
-                acuatico = ENTRADA.nextLine().toLowerCase();
-                esAcuatico = acuatico.equals("si");
-
-                animal = new Reptiles(pedirInt("id: "), nombreAnimal, sexoAnimal, estado, esAcuatico);
-                mAnimales.put(animal, especie);
-                System.out.println("Animal añadido con exito");
-                break;
-
-            default:
-                System.out.println("Nombre animal: ");
-                nombreAnimal = ENTRADA.nextLine();
-
-                System.out.println("Sexo (M o H)");
-                sexo = ENTRADA.nextLine();
-                sexoAnimal = sexo.equalsIgnoreCase("H") ? Sexo.H : Sexo.M;
-
-                System.out.println("Estado: (bien '0', enfermo '1', en tratamiento '2')");
-                estado = ENTRADA.nextInt();
-                ENTRADA.nextLine(); // <--- importante
-
-                System.out.println("color de las plumas: ");
-                colorPlumas = ENTRADA.nextLine();
-
-                System.out.println("Longitud del pico: ");
-                longitudPico = ENTRADA.nextDouble();
-                ENTRADA.nextLine(); // <--- importante
-
-                animal = new Aves(pedirInt("id: "), nombreAnimal, sexoAnimal, estado, colorPlumas, longitudPico);
-                mAnimales.put(animal, especie);
-
-                System.out.println("Animal añadido con exito");
-                break;
+        idAnimal = pedirInt("ID: ");
+        estado = pedirInt("Estado:  (si el animal está bien de salud con el valor 0, si\\n\" +\n" +
+                "                \"está enfermo en estado guardaremos un 1 y si está en tratamiento estado almacenará\\n\" +\n" +
+                "                \"un 2)");
+        nombreAnimal = pedirString("Nombre animal: ");
+        sexo = pedirString("animales.Sexo:  (H 'hembra' o M 'macho')");
+        if (sexo.equalsIgnoreCase("H")){
+            sexoAnimal = Sexo.H;
+        }else {
+            sexoAnimal = Sexo.M;
         }
-    }
 
-    private boolean buscarAnimal(int id){
-        for (Animal ani : mAnimales.keySet()){
-            if(ani.getIdAnimal()  == id){
-                return true;
+        do {
+
+            switch (especie){
+                case "mamifero":
+                    peso = pedirDouble("peso del animal: ");
+                    altura = pedirDouble("Altura animal");
+                    respuestaCarnivoro = pedirString("¿Es carnivoro?");
+                    if(respuestaCarnivoro.equalsIgnoreCase("si")){
+                        esCarnivoro = true;
+                    }else {
+                        esCarnivoro = false;
+                    }
+
+                    ani = new Mamifero(idAnimal, estado, nombreAnimal, sexoAnimal, peso, altura, esCarnivoro);
+
+                    break;
+                case "ave":
+
+                    colorPlumaje = pedirString("Color plumaje");
+
+                    longitudPico = pedirDouble("Longitud del pico: ");
+
+                    ani = new Aves(idAnimal, estado, nombreAnimal, sexoAnimal, colorPlumaje, longitudPico);
+
+                    break;
+                case "reptil":
+
+                    respuestaAcuatico = pedirString("¿Es acuatico?");
+
+                    if (respuestaAcuatico.equalsIgnoreCase("si")){
+                        esAcuatico = true;
+                    }else {
+                        esAcuatico = false;
+                    }
+
+                    ani = new Reptiles(idAnimal, estado, nombreAnimal, sexoAnimal, esAcuatico);
+
+                    break;
+                default:
+                    System.out.println("Esa especie no se puede guardar");
+                    guardarEspecie = false;
+                    break;
+
             }
 
-        }
+        }while (!guardarEspecie);
 
-        return false;
+        return ani;
+
+    }
+
+    public void añadirAnimal(){
+
+        String especie;
+
+        especie = pedirString("Indica la especie del animal:  (mamifero, reptil o ave)");
+
+        Animal ani = pedirDatosAnimal(especie);
+        int estado = ani.getEstado();
+
+        mAnimalesEspecie.putIfAbsent(especie, new ArrayList<>());
+        mAnimalesEspecie.get(especie).add(ani);
+
+        mAnimalesEstado.putIfAbsent(estado, new ArrayList<>());
+        mAnimalesEstado.get(estado).add(ani);
+
+        mAnimalesId.putIfAbsent(ani.getIdAnimal(), ani);
+
+        System.out.println("Animal añadido con exito");
+
+
+    }
+
+    private Animal buscarAnimal(int idAnimal){
+        Animal ani;
+
+        ani = (Animal) mAnimalesId.get(idAnimal);
+
+        return ani;
+
     }
 
     public void cambiarEstadoAnimal(){
-        int idABuscar;
+        Animal ani = buscarAnimal(pedirInt("Introduce el numero del animal que deseas cambiar el estado: "));
 
-        idABuscar = pedirInt("Introduce el id del animal que deseas buscar");
+        int estado = pedirInt("Nuevo estado: (bien '0', enfermo '1', en tratamiento '2')");
 
-        if (!buscarAnimal(idABuscar)){
-            System.out.println("Ese animal no esta registrado");
+
+        if (ani.getEstado() == estado){
+            System.out.println("Error este animal ya tine ese estado: ");
         }else {
-            for (Map.Entry<Animal, String> entry : mAnimales.entrySet()){
-                Animal animal = entry.getKey();
 
-                if (animal.getIdAnimal() == idABuscar){
-                    animal.setEstado(pedirInt("introduce el nuevo estado del animal:  (bien '0', enfermo '1', en tratamiento '2')"));
-                    System.out.println("Estado cambiado con exito");
-                }
-
-            }
-        }
-    }
-
-    public List<Animal> listaAnimalesEnfermos(){
-        List<Animal> lAnimalesEnfermos = new ArrayList<>();
-
-        for (Map.Entry<Animal,String> entry : mAnimales.entrySet()){
-            Animal animal = entry.getKey();
-
-            if (animal.getEstado() == 1){
-                lAnimalesEnfermos.add(animal);
-            }
+            ani.setEstado(estado);
+            System.out.println("Estado modificado con exito");
 
         }
 
-        return lAnimalesEnfermos;
+
 
     }
 
-    private Map<String, List<Animal>> agruparPorEspecie(){
-        Map<String, List<Animal>> mEspecie = new HashMap<>();
+    public List<Animal> listaEnfermos(){
+        List<Animal> lEnfermos = mAnimalesEstado.get(1);
 
-
-        for (Map.Entry<Animal, String> entry : mAnimales.entrySet()){
-            Animal animal = entry.getKey();
-            String especie = entry.getValue();
-
-            if (!mEspecie.containsKey(especie)){
-                mEspecie.put(especie, new ArrayList<>());
-            }
-
-            mEspecie.get(especie).add(animal);
-
-        }
-
-        return mEspecie;
+        return lEnfermos;
     }
 
-    public void mostrarPorEspecie(){
+    public List<Animal> listaEspecie(){
+        List<Animal> lEspecie = mAnimalesEspecie.get(pedirString("introduce la especie que deseas buscar"));
 
-        String especieABuscar;
+        return lEspecie;
+    }
 
-        System.out.println("especie a buscar = ");
-        especieABuscar = ENTRADA.nextLine();
+    public List<Animal> listaEstado(){
+        List<Animal> lEstado = mAnimalesEstado.get(pedirInt("Introduce el estado que deseas buscar: "));
 
-        for (Map.Entry<String, List<Animal>> entry : agruparPorEspecie().entrySet()){
+        return lEstado;
+    }
 
-            if (entry.getKey().equalsIgnoreCase(especieABuscar)){
-                for (Animal ani : entry.getValue()){
-                    System.out.println("ID: " + ani);
-                }
+    private List<Animal> lHembrasPorEspecie(List<Animal> lEspecie){
+        List<Animal> lHembras = new ArrayList<>();
+
+        for (Animal ani : lEspecie){
+            if (ani.getSexoAnimal() == Sexo.H){
+                lHembras.add(ani);
             }
         }
 
+        return lHembras;
+
     }
 
-    private Map<Integer, List<Animal>> agruparPorEstado(){
-        Map<Integer, List<Animal>> mEstado = new HashMap<>();
 
+    private List<Animal> lMachosPorEspecie(){
+        List<Animal> lMachos = new ArrayList<>();
 
-        for (Animal ani : mAnimales.keySet()){
-            int estado = ani.getEstado();
-
-            if (!mEstado.containsKey(estado)){
-                mEstado.put(estado, new ArrayList<>());
-            }
-
-            mEstado.get(estado).add(ani);
-        }
-
-        return mEstado;
-    }
-
-    public void mostrarPorEstado(){
-
-        for (Map.Entry<Integer, List<Animal>> entry : agruparPorEstado().entrySet()){
-            if(entry.getKey() == pedirInt("Introduce el estado por el que quires filtrar")){
-
-                for (Animal ani : entry.getValue()){
-                    System.out.println("id: " + ani);
-                }
-
+        for (Map.Entry<String, List<Animal>> entry : mAnimalesEspecie.keySet()){
+            if (ani.getSexoAnimal() == Sexo.M){
+                lMachos.add(ani);
             }
         }
+
+        return lMachos;
+
     }
+
+    public void contHembrasMAchosEspecie(){
+        int contMachos;
+
+        contMachos = lMachosPorEspecie().size();
+
+        System.out.println("Especie: " + mAnimalesEspecie.get("mamifero"));
+
+
+
+    }
+
+
 
 
 }

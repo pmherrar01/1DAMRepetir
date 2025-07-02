@@ -1,3 +1,6 @@
+import animales.Animal;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,9 +20,10 @@ public class Main {
 
     }
 
-    private static void menu(Operativas op) {
+    private static void menu() {
         int num;
 
+        Operativas op = new Operativas();
 
         do {
             System.out.println("1- Añadir animal");
@@ -34,20 +38,24 @@ public class Main {
 
             switch (num) {
                 case 1:
-                    op.crearAnimal();
+                    op.añadirAnimal();
                     break;
                 case 2:
                     op.cambiarEstadoAnimal();
                     break;
                 case 3:
-                    List<Animal> lEnfermos = op.listaAnimalesEnfermos();
-                    System.out.println("lEnfermos = " + lEnfermos);
+                    List<Animal> lEnfermos = op.listaEnfermos();
+                    System.out.println(lEnfermos);
                     break;
                 case 4:
-                    op.mostrarPorEspecie();
+                    List<Animal> lEspecie = op.listaEspecie();
+
+                    System.out.println(lEspecie);
                     break;
                 case 5:
-                    op.mostrarPorEstado();
+                    List<Animal> lEstado = op.listaEstado();
+
+                    System.out.println(lEstado);
                     break;
                 case 6:
                     break;
@@ -62,8 +70,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Operativas op = new Operativas();
-        menu(op);
+
+        menu();
 
     }
 }
