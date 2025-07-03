@@ -58,8 +58,11 @@ public class Main {
                     System.out.println(lEstado);
                     break;
                 case 6:
+                    op.contHembrasMAchosEspecie();
                     break;
                 case 7:
+                    op.volcarFichero();
+
                     break;
                 case 8:
                     System.out.println("Saliendo...");

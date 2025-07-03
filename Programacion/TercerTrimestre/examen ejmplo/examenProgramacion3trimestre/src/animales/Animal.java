@@ -40,6 +40,10 @@ public class Animal {
         return sexoAnimal;
     }
 
+    public String getNombAnimal() {
+        return nombAnimal;
+    }
+
     @Override
     public String toString() {
         return "animales.Animal{" +
